@@ -32,6 +32,22 @@ spring:
           filters:
             - StripPrefix=0
         
+        # Ruta para archivos/imágenes del catálogo
+        - id: ms-books-catalogue-files
+          uri: lb://ms-books-catalogue
+          predicates:
+            - Path=/api/files/**
+          filters:
+            - StripPrefix=0
+        
+        # Ruta para acceder a las imágenes estáticas (uploads)
+        - id: ms-books-catalogue-uploads
+          uri: lb://ms-books-catalogue
+          predicates:
+            - Path=/uploads/**
+          filters:
+            - StripPrefix=0
+        
         # Ruta para el microservicio de Payments
         # Proxy Inverso: POST /api/payments/action with {"method":"POST","path":"/api/payments","body":{...}}
         - id: ms-books-payments

@@ -35,6 +35,9 @@ public class Book {
 
     private Boolean visible;
 
+    @Column(name = "cover_image_url")
+    private String coverImageUrl;
+
     public Book() {
         // Constructor para JPA
     }
@@ -119,5 +122,13 @@ public class Book {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    public String getCoverImageUrl() {
+        return coverImageUrl;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
     }
 }

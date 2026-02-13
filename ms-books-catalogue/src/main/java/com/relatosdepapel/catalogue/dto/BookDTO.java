@@ -15,6 +15,7 @@ public class BookDTO {
     private LocalDate publicationDate;
     private Integer rating;
     private Boolean visible;
+    private String coverImageUrl;
 
     public BookDTO() {
         // Constructor por JPA
@@ -98,5 +99,13 @@ public class BookDTO {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    public String getCoverImageUrl() {
+        return coverImageUrl;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
     }
 }

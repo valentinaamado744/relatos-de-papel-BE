@@ -7,6 +7,12 @@ spring:
   application:
     name: ms-books-catalogue
 
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
   # Elasticsearch: usado por el buscador (endpoint /api/books/search)
   elasticsearch:
     uris: ${ELASTICSEARCH_URIS:http://localhost:9200}
@@ -25,6 +31,9 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
+
+file:
+  upload-dir: ./uploads/book-covers
 
 eureka:
   client:

@@ -54,6 +54,9 @@ public class BookDocument {
     @Field(type = FieldType.Boolean)
     private Boolean visible;
 
+    @Field(type = FieldType.Keyword)
+    private String coverImageUrl;
+
     public BookDocument() {
     }
 
@@ -135,5 +138,13 @@ public class BookDocument {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    public String getCoverImageUrl() {
+        return coverImageUrl;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
     }
 }

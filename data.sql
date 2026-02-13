@@ -407,6 +407,7 @@ CREATE TABLE books (
     description TEXT,
     publisher VARCHAR(255),
     publication_year INT,
+    cover_image_url VARCHAR(500),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

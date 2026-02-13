@@ -89,6 +89,7 @@ public class BookServiceImpl implements BookService {
                 case "publicationYear" -> existing.setPublicationYear(value instanceof Number n ? n.intValue() : Integer.parseInt(value.toString()));
                 case "rating" -> existing.setRating(value instanceof Number n ? n.intValue() : Integer.parseInt(value.toString()));
                 case "visible" -> existing.setVisible(Boolean.parseBoolean(value.toString()));
+                case "coverImageUrl" -> existing.setCoverImageUrl((String) value);
                 default -> { /* campo desconocido */ }
             }
         });
@@ -204,6 +205,7 @@ public class BookServiceImpl implements BookService {
         doc.setPublicationYear(book.getPublicationYear());
         doc.setRating(book.getRating());
         doc.setVisible(book.getVisible());
+        doc.setCoverImageUrl(book.getCoverImageUrl());
         return doc;
     }
 
@@ -219,6 +221,7 @@ public class BookServiceImpl implements BookService {
         dto.setPublicationDate(doc.getPublicationYear() != null ? LocalDate.of(doc.getPublicationYear(), 1, 1) : null);
         dto.setRating(doc.getRating());
         dto.setVisible(doc.getVisible());
+        dto.setCoverImageUrl(doc.getCoverImageUrl());
         return dto;
     }
 
@@ -236,6 +239,7 @@ public class BookServiceImpl implements BookService {
         dto.setPublicationDate(book.getPublicationYear() != null ? LocalDate.of(book.getPublicationYear(), 1, 1) : null);
         dto.setRating(book.getRating());
         dto.setVisible(book.getVisible());
+        dto.setCoverImageUrl(book.getCoverImageUrl());
         return dto;
     }
 
