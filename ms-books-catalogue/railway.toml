@@ -1,0 +1,10 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "ms-books-catalogue/Dockerfile"
+
+[deploy]
+startCommand = "java -jar target/ms-books-catalogue-0.0.1-SNAPSHOT.jar"
+healthcheckPath = "/actuator/health"
+healthcheckTimeout = 100
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
