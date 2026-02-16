@@ -1,64 +1,64 @@
-package com.relatosdepapel.catalogue.entity;
+package com.relatosdepapel.catalogue.document;
 
-import jakarta.persistence.*;
-<<<<<<< HEAD
-import java.time.LocalDate;
-=======
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import java.math.BigDecimal;
->>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
 
-@Entity
-@Table(name = "books")
-public class Book {
+/**
+ * Modelo del libro en Elasticsearch para búsquedas.
+ * Equivalente al modelo relacional Book, con tipos de campo adecuados para búsqueda.
+ *
+ * Tipos elegidos:
+ * - title, author: search_as_you_type → búsqueda por prefijo y sugerencias al escribir
+ * - isbn, category: keyword → filtros exactos y agregaciones
+ * - price, stock, publicationYear, rating: numéricos para filtros y rangos
+ * - visible: boolean para filtro
+ */
+@Document(indexName = "books")
+public class BookDocument {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    /** Búsqueda por texto y autocompletado (sugerencias al escribir). */
+    @Field(type = FieldType.Search_As_You_Type)
     private String title;
 
-    @Column(nullable = false)
+    /** Búsqueda por texto y autocompletado por autor. */
+    @Field(type = FieldType.Search_As_You_Type)
     private String author;
 
-    @Column(unique = true)
+    /** Identificador único; búsqueda exacta. */
+    @Field(type = FieldType.Keyword)
     private String isbn;
 
-<<<<<<< HEAD
+    @Field(type = FieldType.Double)
+    private Double price;
+
+    @Field(type = FieldType.Integer)
+    private Integer stock;
+
+    /** Categoría: filtros exactos y facetas. */
+    @Field(type = FieldType.Keyword)
     private String category;
 
-    private LocalDate publicationDate;
-
-    private Integer rating; // 1 a 5
-
-    private Boolean visible;
-
-    
-=======
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;
-
-    @Column(nullable = false)
-    private Integer stock = 0;
-
-    private String category;
-
-    @Column(name = "publication_year")
+    @Field(type = FieldType.Integer)
     private Integer publicationYear;
 
+    @Field(type = FieldType.Integer)
     private Integer rating;
 
+    @Field(type = FieldType.Boolean)
     private Boolean visible;
 
-    @Column(name = "cover_image_url")
+    @Field(type = FieldType.Keyword)
     private String coverImageUrl;
 
->>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
-    public Book() {
-        // Constructor para JPA
+    public BookDocument() {
     }
-
-    // Getters y Setters
 
     public Long getId() {
         return id;
@@ -92,13 +92,11 @@ public class Book {
         this.isbn = isbn;
     }
 
-<<<<<<< HEAD
-=======
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -110,7 +108,6 @@ public class Book {
         this.stock = stock;
     }
 
->>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
     public String getCategory() {
         return category;
     }
@@ -119,21 +116,12 @@ public class Book {
         this.category = category;
     }
 
-<<<<<<< HEAD
-    public LocalDate getPublicationDate() {
-        return publicationDate;
-    }
-
-    public void setPublicationDate(LocalDate publicationDate) {
-        this.publicationDate = publicationDate;
-=======
     public Integer getPublicationYear() {
         return publicationYear;
     }
 
     public void setPublicationYear(Integer publicationYear) {
         this.publicationYear = publicationYear;
->>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
     }
 
     public Integer getRating() {
@@ -151,8 +139,6 @@ public class Book {
     public void setVisible(Boolean visible) {
         this.visible = visible;
     }
-<<<<<<< HEAD
-=======
 
     public String getCoverImageUrl() {
         return coverImageUrl;
@@ -161,5 +147,4 @@ public class Book {
     public void setCoverImageUrl(String coverImageUrl) {
         this.coverImageUrl = coverImageUrl;
     }
->>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
 }

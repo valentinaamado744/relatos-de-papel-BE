@@ -1,5 +1,9 @@
 package com.relatosdepapel.catalogue.dto;
 
+<<<<<<< HEAD
+=======
+import java.math.BigDecimal;
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
 import java.time.LocalDate;
 
 public class BookDTO {
@@ -8,10 +12,19 @@ public class BookDTO {
     private String title;
     private String author;
     private String isbn;
+<<<<<<< HEAD
+=======
+    private BigDecimal price;
+    private Integer stock;
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
     private String category;
     private LocalDate publicationDate;
     private Integer rating;
     private Boolean visible;
+<<<<<<< HEAD
+=======
+    private String coverImageUrl;
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
 
     public BookDTO() {
         // Constructor por JPA
@@ -49,6 +62,25 @@ public class BookDTO {
         this.isbn = isbn;
     }
 
+<<<<<<< HEAD
+=======
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
     public String getCategory() {
         return category;
     }
@@ -80,4 +112,15 @@ public class BookDTO {
     public void setVisible(Boolean visible) {
         this.visible = visible;
     }
+<<<<<<< HEAD
+=======
+
+    public String getCoverImageUrl() {
+        return coverImageUrl;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
+    }
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
 }

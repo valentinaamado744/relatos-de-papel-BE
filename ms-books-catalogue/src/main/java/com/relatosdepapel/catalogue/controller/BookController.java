@@ -2,7 +2,13 @@ package com.relatosdepapel.catalogue.controller;
 
 import com.relatosdepapel.catalogue.dto.BookDTO;
 import com.relatosdepapel.catalogue.service.BookService;
+<<<<<<< HEAD
 import org.springframework.http.HttpStatus;
+=======
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +43,18 @@ public class BookController {
         return service.findById(id);
     }
 
+<<<<<<< HEAD
     // Busacar libros con filtros
+=======
+    // Reindexar todos los libros en Elasticsearch (para pruebas o tras levantar ES)
+    @PostMapping("/reindex")
+    @ResponseStatus(HttpStatus.OK)
+    public void reindex() {
+        service.reindex();
+    }
+
+    // Buscar libros con filtros (usa Elasticsearch)
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
     @GetMapping("/search")
     public List<BookDTO> search(
             @RequestParam(required = false) String title,
@@ -74,4 +91,32 @@ public class BookController {
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
+<<<<<<< HEAD
+=======
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Map<String, String>> handleDuplicateIsbn(DataIntegrityViolationException ex) {
+        return conflictOrBadRequest(ex.getMostSpecificCause().getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, String>> handleOther(Exception ex) {
+        Throwable t = ex;
+        String msg = t.getMessage();
+        while (t.getCause() != null) {
+            t = t.getCause();
+            if (t.getMessage() != null) msg = t.getMessage();
+        }
+        return conflictOrBadRequest(msg);
+    }
+
+    private static ResponseEntity<Map<String, String>> conflictOrBadRequest(String msg) {
+        if (msg != null && msg.contains("Duplicate") && msg.contains("isbn")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(Map.of("error", "ISBN already exists", "message", "A book with this ISBN is already in the catalogue."));
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("error", "Invalid data", "message", msg != null ? msg : "Constraint violation"));
+    }
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
 }

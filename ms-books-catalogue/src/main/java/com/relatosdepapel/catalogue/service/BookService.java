@@ -27,4 +27,10 @@ public interface BookService {
             Integer rating,
             Boolean visible
     );
+<<<<<<< HEAD
+=======
+
+    /** Reindexa todos los libros de la base de datos en Elasticsearch (útil tras arrancar ES o para pruebas). */
+    void reindex();
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
 }

@@ -1,15 +1,39 @@
 server:
+<<<<<<< HEAD
   port: 0   # puerto dinámico
+=======
+  port: 8081
+  error:
+    include-message: always
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
 
 spring:
   application:
     name: ms-books-catalogue
 
+<<<<<<< HEAD
   datasource:
     url: jdbc:h2:mem:booksdb
     driver-class-name: org.h2.Driver
     username: sa
     password:
+=======
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  # Elasticsearch: usado por el buscador (endpoint /api/books/search)
+  elasticsearch:
+    uris: ${ELASTICSEARCH_URIS:http://localhost:9200}
+
+  datasource:
+    url: jdbc:mysql://195.35.61.36:3306/u301187585_relatos_papel?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: u301187585_relatos_admin
+    password: v$Z2!#Xi+v
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
 
   jpa:
     hibernate:
@@ -18,13 +42,24 @@ spring:
     properties:
       hibernate:
         format_sql: true
+<<<<<<< HEAD
 
   h2:
     console:
       enabled: true
       path: /h2-console
+=======
+        dialect: org.hibernate.dialect.MySQLDialect
+
+file:
+  upload-dir: ./uploads/book-covers
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
 
 eureka:
   client:
     service-url:
+<<<<<<< HEAD
       defaultZone: http://localhost:8761/eureka
+=======
+      defaultZone: http://localhost:8761/eureka/
+>>>>>>> 6baa5623e840a7fe5089992f8bef7184d6b8b5e5
