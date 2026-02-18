@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -40,7 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
             payment.setAmount(payment.getTotalAmount());
         }
         if (payment.getTransactionId() == null || payment.getTransactionId().isBlank()) {
-            payment.setTransactionId("TXN-" + System.currentTimeMillis());
+            payment.setTransactionId("TXN-" + UUID.randomUUID());
         }
         if (payment.getPaymentDate() == null) {
             payment.setPaymentDate(LocalDateTime.now());
